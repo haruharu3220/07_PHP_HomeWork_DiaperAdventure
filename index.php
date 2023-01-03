@@ -16,12 +16,10 @@
 <p>プレイヤーを選択してください。</p>
 <p>＊はるあ愛用おむつは吸収力が２倍</p>
 
-<?php include('./news.php'); ?>
 
 <a class="btn btn-custom01">
   <span class="btn-custom01-front">決定</span>
   <i class="fas fa-angle-right fa-position-right"></i>
-
 </a>
 
 

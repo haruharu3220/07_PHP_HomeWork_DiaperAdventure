@@ -13,3 +13,10 @@ https://osusume.mynavi.jp/articles/5881/
 
 HTMLからPHPを読み込む
 https://magazine.techacademy.jp/magazine/30930
+
+
+
+
+■トラブルシューティング  
+①SQLSTATE[23000]: Integrity constraint violation 1048  
+https://qiita.com/SuguruOoki/items/eb74d2c33ee9f023aaf1
