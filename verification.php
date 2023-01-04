@@ -38,15 +38,20 @@ try {
   exit();
 }
 
+$test =3;
 //SQL 作成&実行
-$sql = 'INSERT INTO Question (qID, questionNo, qContent)VALUES (NULL, 1, :question)';
+$sql = 'INSERT INTO Question (qID, questionNo, qContent)VALUES (NULL, :test, :question1);
+        INSERT INTO Choices (choicesID, questionNO, choicesContent, correctAnswer)VALUES (NULL, 1, :choices1_1, 0);
+        INSERT INTO Choices (choicesID, questionNO, choicesContent, correctAnswer)VALUES (NULL, 1, :choices1_2, 1);';
 $stmt = $pdo->prepare($sql);
 
+// $answer_contact1 
 
 // バインド変数を設定
-$stmt->bindValue(':question', $question1, PDO::PARAM_STR);
-
-
+$stmt->bindValue(':test', $test, PDO::PARAM_STR);
+$stmt->bindValue(':question1', $question1, PDO::PARAM_STR);
+$stmt->bindValue(':choices1_1', $choices1_1, PDO::PARAM_STR);
+$stmt->bindValue(':choices1_2', $choices1_2, PDO::PARAM_STR);
 
 try {
   $status = $stmt->execute();
