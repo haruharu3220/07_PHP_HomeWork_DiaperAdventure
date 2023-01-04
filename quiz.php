@@ -54,9 +54,14 @@ foreach ($result_question as $record) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Diaper Adventure</title>
 </head>
 <body>
-    
+    <p>あなたの選んだキャラクターは</p>
+    <p class=selectChara></p>
+    <p>です。</p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/quiz.js"></script>
 </body>
 </html>
