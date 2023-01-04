@@ -13,15 +13,16 @@ try {
 
 //SQL 作成&実行
 $sql_question = 'SELECT * FROM Question';
-$stmt_question = $pdo->prepare($sql);
+$stmt_question = $pdo->prepare($sql_question);
 
 
 $sql_choices = 'SELECT * FROM Choices';
-$stmt_choices = $pdo->prepare($sql);
+$stmt_choices = $pdo->prepare($sql_choices);
 
 
 try {
-  $status = $stmt_question->execute();
+  $status_question = $stmt_question->execute();
+  $status_choices = $stmt_choices->execute();
 } catch (PDOException $e) {
   echo json_encode(["sql error" => "{$e->getMessage()}"]);
   exit();
@@ -29,6 +30,8 @@ try {
 
 // SQL実行の処理
 $result_question = $stmt_question->fetchAll(PDO::FETCH_ASSOC);
+$result_choices = $stmt_choices->fetchAll(PDO::FETCH_ASSOC);
+
 foreach ($result_question as $record) {
   $output .= "
     <tr>

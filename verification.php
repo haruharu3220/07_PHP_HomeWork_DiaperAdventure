@@ -2,20 +2,28 @@
 $question1 = $_POST['question1'];
 $choices1_1 = $_POST['choices1_1'];
 $choices1_2 = $_POST['choices1_2'];
-$choices1_3 = $_POST['choices1_3'];
+// $choices1_3 = $_POST['choices1_3'];
 $answer_contact1 = $_POST['answer_contact1'];
 
-$question2 = $_POST['question2'];
-$choices2_1 = $_POST['choices2_1'];
-$choices2_2 = $_POST['choices2_2'];
-$choices2_3 = $_POST['choices2_3'];
-$answer_contact2 = $_POST['answer_contact2'];
+// echo '<pre>';
+// var_dump($question1 );
+// var_dump($choices1_1 );
+// var_dump($choices1_2 );
+// var_dump($answer_contact1 );
+// echo '</pre>';
+//exit();
 
-$question3 = $_POST['question3'];
-$choices3_1 = $_POST['choices3_1'];
-$choices3_2 = $_POST['choices3_2'];
-$choices3_3 = $_POST['choices3_3'];
-$answer_contact3 = $_POST['answer_contact3'];
+// $question2 = $_POST['question2'];
+// $choices2_1 = $_POST['choices2_1'];
+// $choices2_2 = $_POST['choices2_2'];
+// $choices2_3 = $_POST['choices2_3'];
+// $answer_contact2 = $_POST['answer_contact2'];
+
+// $question3 = $_POST['question3'];
+// $choices3_1 = $_POST['choices3_1'];
+// $choices3_2 = $_POST['choices3_2'];
+// $choices3_3 = $_POST['choices3_3'];
+// $answer_contact3 = $_POST['answer_contact3'];
 
 
 //DB接続
@@ -30,8 +38,38 @@ try {
   exit();
 }
 
+//SQL 作成&実行
+$sql = 'INSERT INTO Question (qID, questionNo, qContent)VALUES (NULL, 1, :question)';
+$stmt = $pdo->prepare($sql);
 
 
+// バインド変数を設定
+$stmt->bindValue(':question', $question1, PDO::PARAM_STR);
+
+
+
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+
+//SQL 実行後の処理
+// $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// $output = "";
+// foreach ($result as $record) {
+//   $output .= "
+//     <tr>
+//       <td>{$record["deadline"]}</td>
+//       <td>{$record["todo"]}</td>
+//     </tr>
+//   ";
+// }
+
+
+// header('Location:settings.php');
+// exit();
 
 ?>
 <!DOCTYPE html>

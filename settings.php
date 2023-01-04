@@ -22,13 +22,13 @@
             選択肢２: <input type="text" name="choices1_2">
             <input type="radio" id="contactChoice1_2" name="answer_contact1" value="choices1_2" />
           </div>
-          <div>
+          <!-- <div>
             選択肢３: <input type="text" name="choices1_3">
             <input type="radio" id="contactChoice1_3" name="answer_contact1" value="choices1_3" />
-          </div>
+          </div> -->
         </fieldset>
 
-        <fieldset>
+        <!-- <fieldset>
             <legend>問題２</legend>
             <div>
               問題文: <input type="text" name="question2">
@@ -64,7 +64,7 @@
               選択肢３: <input type="text" name="choices3_3">
               <input type="radio" id="contactChoice3_3" name="answer_contact3" value="choices3_3" />
             </div>
-          </fieldset> 
+          </fieldset>  -->
             <button>submit</button>
       </form>
 
