@@ -39,7 +39,7 @@ try {
 }
 
 $test =3;
-$answer = (int)substr($answer_contact1, -1);
+$answer1 = (int)substr($answer_contact1, -1);
 var_dump($answer);
 
 
@@ -47,7 +47,7 @@ var_dump($answer);
 $sql = 'INSERT INTO Question (qID, questionNo, qContent)VALUES (NULL, :test, :question1);
         INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, 1, 1,:choices1_1);
         INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, 1, 2,:choices1_2);
-        INSERT INTO Correct (cID, qNO, cNo)VALUES (NULL, 1, :answer);';
+        INSERT INTO Correct (cID, qNO, cNo)VALUES (NULL, 1, :answer1);';
 
 
 
@@ -58,7 +58,7 @@ $stmt->bindValue(':test', $test, PDO::PARAM_STR);
 $stmt->bindValue(':question1', $question1, PDO::PARAM_STR);
 $stmt->bindValue(':choices1_1', $choices1_1, PDO::PARAM_STR);
 $stmt->bindValue(':choices1_2', $choices1_2, PDO::PARAM_STR);
-$stmt->bindValue(':answer', $answer, PDO::PARAM_STR);
+$stmt->bindValue(':answer1', $answer1, PDO::PARAM_STR);
 
 try {
   $status = $stmt->execute();
@@ -90,7 +90,10 @@ try {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DiaperAdventure</title>
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
 </head>
 <body>
 <h1>確認画面</h1>
@@ -111,5 +114,13 @@ try {
 <p><?=$choices3_2 ?></p>
 <p><?=$choices3_3 ?></p> -->
 
+<a class="btn btn-custom01 returnTop">
+  <span class="btn-custom01-front">トップに戻る</span>
+  <i class="fas fa-angle-right fa-position-right"></i>
+</a>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="js/verification.js"></script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+.diapers{
+    display: flex;
+    width: 20vw;
+    height: 30px;
+    border: solid;
+    margin: 5px;
+}
+
+.diapers.notActive{
+    background: white;
+  }
+
+.diapers.isActive{
+    background: #fff100;
+  }

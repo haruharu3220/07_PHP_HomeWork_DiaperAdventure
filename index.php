@@ -1,3 +1,50 @@
+<?php
+//DB接続
+$dbn ='mysql:dbname=DiaperAdventure;charset=utf8mb4;port=3306;host=localhost';
+$user = 'root';
+$pwd = '';
+
+try {
+  $pdo = new PDO($dbn, $user, $pwd);
+} catch (PDOException $e) {
+  echo json_encode(["db error" => "{$e->getMessage()}"]);
+  exit();
+}
+
+$test =3;
+$answer1 = (int)substr($answer_contact1, -1);
+var_dump($answer);
+
+
+//SQL 作成&実行
+$sql = 'SELECT * FROM Diaper ORDER BY DiaperID ASC';
+$stmt = $pdo->prepare($sql);
+
+
+
+try {
+  $status = $stmt->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// echo '<pre>';
+// var_dump($result);
+// echo '</pre>';
+// exit();
+
+$str='';
+$test2 =1;
+foreach($result as $record){
+  $str .= "<div class=diapers {$test2}>{$record['diaperName']}</div>";
+  $test2++; 
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +53,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DiaperAdventure</title>
     <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
 </head>
@@ -16,6 +64,7 @@
 <p>プレイヤーを選択してください。</p>
 <p>＊はるあ愛用おむつは吸収力が２倍</p>
 
+<?= $str ?>
 
 <a class="btn btn-custom01">
   <span class="btn-custom01-front">決定</span>
@@ -24,7 +73,6 @@
 
 
 
-<p>テスト：question1=<?=$question1?>です。</p>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="js/index.js"></script>
 </body>
