@@ -39,19 +39,26 @@ try {
 }
 
 $test =3;
+$answer = (int)substr($answer_contact1, -1);
+var_dump($answer);
+
+
 //SQL 作成&実行
 $sql = 'INSERT INTO Question (qID, questionNo, qContent)VALUES (NULL, :test, :question1);
-        INSERT INTO Choices (choicesID, questionNO, choicesContent, correctAnswer)VALUES (NULL, 1, :choices1_1, 0);
-        INSERT INTO Choices (choicesID, questionNO, choicesContent, correctAnswer)VALUES (NULL, 1, :choices1_2, 1);';
-$stmt = $pdo->prepare($sql);
+        INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, 1, 1,:choices1_1);
+        INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, 1, 2,:choices1_2);
+        INSERT INTO Correct (cID, qNO, cNo)VALUES (NULL, 1, :answer);';
 
-// $answer_contact1 
+
+
+$stmt = $pdo->prepare($sql);
 
 // バインド変数を設定
 $stmt->bindValue(':test', $test, PDO::PARAM_STR);
 $stmt->bindValue(':question1', $question1, PDO::PARAM_STR);
 $stmt->bindValue(':choices1_1', $choices1_1, PDO::PARAM_STR);
 $stmt->bindValue(':choices1_2', $choices1_2, PDO::PARAM_STR);
+$stmt->bindValue(':answer', $answer, PDO::PARAM_STR);
 
 try {
   $status = $stmt->execute();
@@ -92,7 +99,7 @@ try {
 <p><?=$question1 ?></p>
 <p><?=$choices1_1 ?></p>
 <p><?=$choices1_2 ?></p>
-<p><?=$choices1_3 ?></p>
+<!-- <p><?=$choices1_3 ?></p>
 <p>問題２</p>
 <p><?=$question2 ?></p>
 <p><?=$choices2_1 ?></p>
@@ -102,7 +109,7 @@ try {
 <p><?=$question3 ?></p>
 <p><?=$choices3_1 ?></p>
 <p><?=$choices3_2 ?></p>
-<p><?=$choices3_3 ?></p>
+<p><?=$choices3_3 ?></p> -->
 
 </body>
 </html>
