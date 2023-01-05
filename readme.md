@@ -6,6 +6,8 @@
 
 
 ■HTMLで困った
+Font Awesomeが表示されない｜四角に文字化けする原因と対処法  
+https://affiben.com/fontawesome-hidden/
 
 ■CSSで困った
 imgタグを中央寄せしたい
