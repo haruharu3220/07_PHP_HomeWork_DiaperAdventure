@@ -35,3 +35,8 @@ https://qiita.com/SuguruOoki/items/eb74d2c33ee9f023aaf1
 ②"sql error":"SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; 　　
 https://qiita.com/SuguruOoki/items/8424ca4d9d454bb2e918
 
+
+
+シューティングゲーム  
+https://qiita.com/naga3/items/19b261efbdd037c8730a  
+
