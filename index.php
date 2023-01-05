@@ -11,9 +11,6 @@ try {
   exit();
 }
 
-$test =3;
-$answer1 = (int)substr($answer_contact1, -1);
-var_dump($answer);
 
 
 //SQL 作成&実行
@@ -43,8 +40,6 @@ foreach($result as $record){
 }
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +53,7 @@ foreach($result as $record){
           href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
 </head>
 <body>
-<h1>Diaper Adventure</h1>
+<h1>おむつの大冒険</h1>
 <i class="fa-thin fa-poo"></i>
 <h2>おむつの大冒険</h2>
 <p>プレイヤーを選択してください。</p>
