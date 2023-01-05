@@ -54,8 +54,7 @@ foreach($result as $record){
 </head>
 <body>
 <h1>おむつの大冒険</h1>
-<i class="fa-thin fa-poo"></i>
-<h2>おむつの大冒険</h2>
+<img src="res/diaper.jpeg" width=500 height=500 alt="おむつ" style="display: block; margin: auto;">
 <p>プレイヤーを選択してください。</p>
 <p>＊はるあ愛用おむつは吸収力が２倍</p>
 
