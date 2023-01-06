@@ -1,8 +1,8 @@
 <?php
-$question1 = $_POST['question1'];
-$choices1_1 = $_POST['choices1_1'];
-$choices1_2 = $_POST['choices1_2'];
-// $choices1_3 = $_POST['choices1_3'];
+$question = $_POST['question1'];
+$choices1 = $_POST['choices1_1'];
+$choices2 = $_POST['choices1_2'];
+$choices3 = $_POST['choices1_3'];
 $answer_contact1 = $_POST['answer_contact1'];
 
 // echo '<pre>';
@@ -38,27 +38,43 @@ try {
   exit();
 }
 
+$sql0 = 'SELECT MAX(questionNo) FROM Question';
+$stmt0 = $pdo->prepare($sql0);
+
+try {
+  $status0 = $stmt0->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+
+$questionNumber = $stmt0->fetch(PDO::FETCH_ASSOC);
+$answer = (int)substr($answer_contact1 , -1);
+// $questionNumber++;
+// var_dump($questionNumber);
+// var_dump($questionNumber["MAX(questionNo)"]);
+$questionNumber["MAX(questionNo)"]++;
+// var_dump($questionNumber["MAX(questionNo)"]);
+
 $test =3;
-$answer1 = (int)substr($answer_contact1, -1);
-var_dump($answer);
-
-
 //SQL 作成&実行
-$sql = 'INSERT INTO Question (qID, questionNo, qContent)VALUES (NULL, :test, :question1);
-        INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, 1, 1,:choices1_1);
-        INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, 1, 2,:choices1_2);
-        INSERT INTO Correct (cID, qNO, cNo)VALUES (NULL, 1, :answer1);';
+$sql = 'INSERT INTO Question (qID, questionNo, qContent)VALUES (NULL, :questionNo, :question);
+        INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, :questionNo, 1,:choices1);
+        INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, :questionNo, 2,:choices2);
+        INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, :questionNo, 3,:choices3);
+        INSERT INTO Correct (cID, qNO, cNo)VALUES (NULL, :questionNo, :answer);';
 
 
 
 $stmt = $pdo->prepare($sql);
 
 // バインド変数を設定
-$stmt->bindValue(':test', $test, PDO::PARAM_STR);
-$stmt->bindValue(':question1', $question1, PDO::PARAM_STR);
-$stmt->bindValue(':choices1_1', $choices1_1, PDO::PARAM_STR);
-$stmt->bindValue(':choices1_2', $choices1_2, PDO::PARAM_STR);
-$stmt->bindValue(':answer1', $answer1, PDO::PARAM_STR);
+$stmt->bindValue(':question', $question, PDO::PARAM_STR);
+$stmt->bindValue(':choices1', $choices1, PDO::PARAM_STR);
+$stmt->bindValue(':choices2', $choices2, PDO::PARAM_STR);
+$stmt->bindValue(':choices3', $choices3, PDO::PARAM_STR);
+$stmt->bindValue(':answer', $answer, PDO::PARAM_STR);
+$stmt->bindValue(':questionNo', $questionNumber["MAX(questionNo)"], PDO::PARAM_STR);
 
 try {
   $status = $stmt->execute();
@@ -98,21 +114,11 @@ try {
 <body>
 <h1>確認画面</h1>
 <p>以下の問題を登録しました。</p>
-<p>問題１</p>
-<p><?=$question1 ?></p>
-<p><?=$choices1_1 ?></p>
-<p><?=$choices1_2 ?></p>
-<!-- <p><?=$choices1_3 ?></p>
-<p>問題２</p>
-<p><?=$question2 ?></p>
-<p><?=$choices2_1 ?></p>
-<p><?=$choices2_2 ?></p>
-<p><?=$choices2_3 ?></p>
-<p>問題３</p>
-<p><?=$question3 ?></p>
-<p><?=$choices3_1 ?></p>
-<p><?=$choices3_2 ?></p>
-<p><?=$choices3_3 ?></p> -->
+<p>問題文：<?=$question ?></p>
+<p>選択肢１<?=$choices1 ?></p>
+<p>選択肢２<?=$choices2 ?></p>
+<p>選択肢３<?=$choices3 ?></p>
+<p>正解は<?=$answer ?>です。</p>
 
 <a class="btn btn-custom01 returnTop">
   <span class="btn-custom01-front">トップに戻る</span>

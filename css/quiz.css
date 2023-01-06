@@ -1,0 +1,18 @@
+.question{
+    text-align: center;
+    font-size: 36px;
+    margin: 5px;
+}
+
+.choices{
+    width: 20vw;
+    height: 30px;
+    border: solid;
+    display: block; 
+    margin: auto;
+    margin-top: 10px;
+}
+
+.choices.isActive{
+    background: #fff100;
+  }
