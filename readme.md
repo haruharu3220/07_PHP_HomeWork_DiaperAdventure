@@ -31,6 +31,10 @@ https://magazine.techacademy.jp/magazine/30930
 header関数で指定したページにリダイレクト  
 https://www.sejuku.net/blog/28054
 
+文字列の中で変数展開する  
+シングルクオーテーション( ' )で囲んだ文字列の中で変数を記述しても変数展開は行われません。  
+https://www.javadrive.jp/php/string/index5.html  
+http://www.dicre.com/php/php-stringembed
 
 ■SQLで困った
 PHPMyAdminでカラムを後から追加  

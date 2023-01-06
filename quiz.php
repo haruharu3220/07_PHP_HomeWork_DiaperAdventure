@@ -83,9 +83,18 @@ foreach($result_question as $question){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diaper Adventure</title>
     <link rel="stylesheet" href="css/quiz.css">
-</head>
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
+  </head>
 <body>
-<?= $str ?>
+  <?= $str ?>
+
+
+  <a class="btn btn-custom01">
+    <span class="btn-custom01-front">決定</span>
+    <i class="fas fa-angle-right fa-position-right"></i>
+  </a>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

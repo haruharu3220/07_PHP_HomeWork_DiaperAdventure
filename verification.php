@@ -38,16 +38,30 @@ try {
   exit();
 }
 
+$sql0 = 'SELECT MAX(questionNo) FROM Question';
+$stmt0 = $pdo->prepare($sql0);
+
+try {
+  $status0 = $stmt0->execute();
+} catch (PDOException $e) {
+  echo json_encode(["sql error" => "{$e->getMessage()}"]);
+  exit();
+}
+
+$questionNumber = $stmt0->fetch(PDO::FETCH_ASSOC);
+$answer = (int)substr($answer_contact1 , -1);
+// $questionNumber++;
+// var_dump($questionNumber);
+// var_dump($questionNumber["MAX(questionNo)"]);
+$questionNumber["MAX(questionNo)"]++;
+// var_dump($questionNumber["MAX(questionNo)"]);
+
 $test =3;
-$answer1 = (int)substr($answer_contact1, -1);
-var_dump($answer);
-
-
 //SQL 作成&実行
-$sql = 'INSERT INTO Question (qID, questionNo, qContent)VALUES (NULL, :test, :question1);
-        INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, 1, 1,:choices1_1);
-        INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, 1, 2,:choices1_2);
-        INSERT INTO Correct (cID, qNO, cNo)VALUES (NULL, 1, :answer1);';
+$sql = 'INSERT INTO Question (qID, questionNo, qContent)VALUES (NULL, :questionNo, :question1);
+        INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, :questionNo, 1,:choices1_1);
+        INSERT INTO Choices (choicesID, questionNO, choicesNo, choicesContent)VALUES (NULL, :questionNo, 2,:choices1_2);
+        INSERT INTO Correct (cID, qNO, cNo)VALUES (NULL, :questionNo, :answer);';
 
 
 
@@ -58,7 +72,8 @@ $stmt->bindValue(':test', $test, PDO::PARAM_STR);
 $stmt->bindValue(':question1', $question1, PDO::PARAM_STR);
 $stmt->bindValue(':choices1_1', $choices1_1, PDO::PARAM_STR);
 $stmt->bindValue(':choices1_2', $choices1_2, PDO::PARAM_STR);
-$stmt->bindValue(':answer1', $answer1, PDO::PARAM_STR);
+$stmt->bindValue(':answer', $answer, PDO::PARAM_STR);
+$stmt->bindValue(':questionNo', $questionNumber["MAX(questionNo)"], PDO::PARAM_STR);
 
 try {
   $status = $stmt->execute();
