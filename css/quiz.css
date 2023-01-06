@@ -12,3 +12,7 @@
     margin: auto;
     margin-top: 10px;
 }
+
+.choices.isActive{
+    background: #fff100;
+  }
